@@ -59,13 +59,6 @@
             @if (Model.CurrentUser?.MustChangePassword != true)
             {
                 <hr />
-                <h3 class="h6 mb-3">ویرایش نام و نام خانوادگی</h3>
-                <form method="post" asp-page-handler="UpdateName" class="mb-4">
-                    <div class="mb-2"><label asp-for="FullName" class="form-label">نام و نام خانوادگی</label><input asp-for="FullName" class="form-control" maxlength="150" autocomplete="name" /><span asp-validation-for="FullName" class="text-danger"></span></div>
-                    <div class="form-text mb-2">نام کاربری و شماره پرسنلی اطلاعات کنترل‌شده هستند و از این بخش تغییر نمی‌کنند.</div>
-                    <button class="btn btn-outline-primary" type="submit">ذخیره نام</button>
-                </form>
-                <hr />
                 <h3 class="h6 mb-2">تغییر عکس پروفایل</h3>
             <p class="text-muted small">فرمت‌های JPG، PNG و WebP؛ حداکثر ۳ مگابایت. تصویر به‌صورت خصوصی ذخیره می‌شود.</p>
             <form method="post" enctype="multipart/form-data" asp-page-handler="UploadPhoto">

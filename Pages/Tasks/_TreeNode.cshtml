@@ -1,0 +1,46 @@
+@model TasksWebApp.Models.TaskTreeNode
+@using TasksWebApp.Models
+@using TaskStatus = TasksWebApp.Models.TaskStatus
+@using TasksWebApp.Helpers
+@{
+    var item = Model.Item;
+    var isTodo = item.RecordType == TaskRecordType.Todo;
+    string StatusLabel(TaskStatus status) => status switch { TaskStatus.Pending => "در انتظار انجام", TaskStatus.InProgress => "در حال انجام", TaskStatus.Completed => "انجام‌شده", _ => "نامشخص" };
+    var statusClass = item.Status switch { TaskStatus.Completed => "success", TaskStatus.InProgress => "primary", _ => "secondary" };
+}
+<div class="task-tree-node">
+    <div class="task-tree-row">
+        @if (Model.Children.Count > 0)
+        {
+            <details open>
+                <summary>
+                    <i class="bi @(isTodo ? "bi-check2-square" : "bi-journal-text") ms-1"></i>
+                    <span class="fw-semibold">@item.Title</span>
+                    <span class="badge bg-@(isTodo ? "warning text-dark" : "info text-dark")">@(isTodo ? "وظیفه" : "گزارش کار")</span>
+                    <span class="badge bg-@statusClass">@StatusLabel(item.Status)</span>
+                    @if (!string.IsNullOrWhiteSpace(item.TaskList?.Name)) { <span class="badge text-bg-light">@item.TaskList.Name</span> }
+                </summary>
+                <div class="task-tree-children">
+                    <div class="small text-muted mb-2">@PersianDateHelper.Format(item.WorkDate) · @item.DurationHours ساعت</div>
+                    <a class="btn btn-sm btn-outline-primary mb-2" asp-page="FollowUp" asp-route-id="@item.Id"><i class="bi bi-eye ms-1"></i>جزئیات و پیوست‌ها</a>
+                    @foreach (var child in Model.Children)
+                    {
+                        <partial name="_TreeNode" model="child" />
+                    }
+                </div>
+            </details>
+        }
+        else
+        {
+            <div class="task-tree-leaf">
+                <i class="bi @(isTodo ? "bi-check2-square" : "bi-journal-text") ms-1"></i>
+                <span class="fw-semibold">@item.Title</span>
+                <span class="badge bg-@(isTodo ? "warning text-dark" : "info text-dark")">@(isTodo ? "وظیفه" : "گزارش کار")</span>
+                <span class="badge bg-@statusClass">@StatusLabel(item.Status)</span>
+                @if (!string.IsNullOrWhiteSpace(item.TaskList?.Name)) { <span class="badge text-bg-light">@item.TaskList.Name</span> }
+                <span class="small text-muted">@PersianDateHelper.Format(item.WorkDate) · @item.DurationHours ساعت</span>
+                <a class="btn btn-sm btn-outline-primary" asp-page="FollowUp" asp-route-id="@item.Id"><i class="bi bi-eye ms-1"></i>جزئیات</a>
+            </div>
+        }
+    </div>
+</div>

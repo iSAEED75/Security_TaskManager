@@ -9,103 +9,111 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TasksWebApp
 build_property.RootNamespace = TasksWebApp
-build_property.ProjectDir = C:\Projects\chatgpt_Version\TasksWebApp_Profile_Security_Enhancements_FA\TasksWebApp\
+build_property.ProjectDir = C:\Projects\FinalVersions\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\TasksWebApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Projects\chatgpt_Version\TasksWebApp_Profile_Security_Enhancements_FA\TasksWebApp
+build_property.MSBuildProjectDirectory = C:\Projects\FinalVersions\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\TasksWebApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Account/AccessDenied.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Account/Login.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Account/Logout.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Account/Profile.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Account/Register.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Admin/AuditLog.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Admin/AuditLog.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQXVkaXRMb2cuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Admin/Backup.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Admin/Backup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQmFja3VwLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Admin/RecycleBin.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Admin/RecycleBin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVjeWNsZUJpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Admin/Users.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Admin/Users.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Categories/Index.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Categories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Error.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Index.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Lists/Index.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Lists/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGlzdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Reports/Index.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Reports/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Reports/Performance.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Reports/Performance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0c1xQZXJmb3JtYW5jZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Shared/_Layout.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Tasks/Create.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Tasks/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Tasks/Delete.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Tasks/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Tasks/Edit.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Tasks/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Tasks/FollowUp.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Tasks/FollowUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcRm9sbG93VXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/Tasks/Index.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Tasks/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/_ViewImports.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Tasks/Tree.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcVHJlZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/Tasks/_TreeNode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcX1RyZWVOb2RlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/chatgpt_Version/TasksWebApp_Profile_Security_Enhancements_FA/TasksWebApp/Pages/_ViewStart.cshtml]
+[C:/Projects/FinalVersions/TasksWebApp_Details_Tree_Images_FA_Fixed (14)/TasksWebApp/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

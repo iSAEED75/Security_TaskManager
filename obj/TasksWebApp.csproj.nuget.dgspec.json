@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\TasksWebApp.csproj": {}
+    "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\TasksWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\TasksWebApp.csproj": {
+    "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\TasksWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\TasksWebApp.csproj",
+        "projectUniqueName": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\TasksWebApp.csproj",
         "projectName": "TasksWebApp",
-        "projectPath": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\TasksWebApp.csproj",
+        "projectPath": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\TasksWebApp.csproj",
         "packagesPath": "C:\\Users\\arabs\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\obj\\",
+        "outputPath": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+kMPaZwmKT0=",
+  "dgSpecHash": "7lanxg8/M2A=",
   "success": true,
-  "projectFilePath": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\TasksWebApp.csproj",
+  "projectFilePath": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\TasksWebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arabs\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\arabs\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

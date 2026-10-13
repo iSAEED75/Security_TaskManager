@@ -22,7 +22,6 @@ public class ProfileModel(AppDbContext db, IWebHostEnvironment environment) : Pa
     public decimal TotalHours { get; private set; }
     public bool ForceChange { get; private set; }
 
-    [BindProperty] public string FullName { get; set; } = string.Empty;
     [BindProperty] public string CurrentPassword { get; set; } = string.Empty;
     [BindProperty] public string NewPassword { get; set; } = string.Empty;
     [BindProperty] public string ConfirmNewPassword { get; set; } = string.Empty;
@@ -34,31 +33,6 @@ public class ProfileModel(AppDbContext db, IWebHostEnvironment environment) : Pa
         if (!await LoadCurrentUserAsync()) return Challenge();
         await LoadProfileExtrasAsync();
         return Page();
-    }
-
-    public async Task<IActionResult> OnPostUpdateNameAsync()
-    {
-        var user = await FindCurrentUserAsync();
-        if (user is null) return Challenge();
-        if (user.MustChangePassword) return RedirectToPage(new { forceChange = true });
-        FullName = (FullName ?? string.Empty).Trim();
-        if (FullName.Length is < 2 or > 150)
-            ModelState.AddModelError(nameof(FullName), "نام و نام خانوادگی باید بین ۲ تا ۱۵۰ نویسه باشد.");
-        if (!ModelState.IsValid)
-        {
-            await LoadCurrentUserAsync(); await LoadProfileExtrasAsync(); return Page();
-        }
-        user.FullName = FullName;
-        AuditWriter.Add(db, User, HttpContext, "ویرایش نام پروفایل", "User", user.Id, "نام نمایشی تغییر کرد.");
-        await db.SaveChangesAsync();
-        // نام claim نشست فعلی نیز به‌روز شود؛ نشست‌های دیگر هنگام ورود بعدی نام جدید را می‌گیرند.
-        var claims = User.Claims.Where(c => c.Type != ClaimTypes.Name).ToList();
-        claims.Add(new Claim(ClaimTypes.Name, user.FullName));
-        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-            new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme)),
-            new AuthenticationProperties { IsPersistent = true, AllowRefresh = true });
-        TempData["Success"] = "نام و نام خانوادگی به‌روزرسانی شد.";
-        return RedirectToPage();
     }
 
     public async Task<IActionResult> OnPostSignOutOtherSessionsAsync()
@@ -196,7 +170,7 @@ public class ProfileModel(AppDbContext db, IWebHostEnvironment environment) : Pa
     private async Task<bool> LoadCurrentUserAsync()
     {
         CurrentUser = await FindCurrentUserAsync();
-        if (CurrentUser is not null) { FullName = CurrentUser.FullName; ForceChange = CurrentUser.MustChangePassword; }
+        if (CurrentUser is not null) { ForceChange = CurrentUser.MustChangePassword; }
         return CurrentUser is not null;
     }
 

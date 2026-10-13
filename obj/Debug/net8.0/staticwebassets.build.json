@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fVntR/3+XDqATluOtYttBRz1XLmtUNYiIzuhxk91tts=",
+  "Hash": "9rDhEpvUSwPmewFds+UdqP2nA/Rh4oeU11b+L9NWnKM=",
   "Source": "TasksWebApp",
   "BasePath": "_content/TasksWebApp",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "TasksWebApp\\wwwroot",
       "Source": "TasksWebApp",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\css\\site.css",
       "SourceId": "TasksWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\bootstrap.bundle.min.js",
+      "Identity": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\lib\\offline\\bootstrap.bundle.min.js",
       "SourceId": "TasksWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "RelativePath": "lib/offline/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\offline\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\bootstrap.rtl.min.css",
+      "Identity": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\lib\\offline\\bootstrap.rtl.min.css",
       "SourceId": "TasksWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "RelativePath": "lib/offline/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\offline\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\bootstrap-icons.min.css",
+      "Identity": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\lib\\offline\\bootstrap-icons.min.css",
       "SourceId": "TasksWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "RelativePath": "lib/offline/bootstrap-icons.min.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\offline\\bootstrap-icons.min.css"
     },
     {
-      "Identity": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Bold.ttf",
+      "Identity": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Bold.ttf",
       "SourceId": "TasksWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "RelativePath": "lib/offline/fonts/NotoSansArabic-Bold.ttf",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Bold.ttf"
     },
     {
-      "Identity": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Medium.ttf",
+      "Identity": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Medium.ttf",
       "SourceId": "TasksWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "RelativePath": "lib/offline/fonts/NotoSansArabic-Medium.ttf",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Medium.ttf"
     },
     {
-      "Identity": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Regular.ttf",
+      "Identity": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Regular.ttf",
       "SourceId": "TasksWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "RelativePath": "lib/offline/fonts/NotoSansArabic-Regular.ttf",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Regular.ttf"
     },
     {
-      "Identity": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-SemiBold.ttf",
+      "Identity": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-SemiBold.ttf",
       "SourceId": "TasksWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "RelativePath": "lib/offline/fonts/NotoSansArabic-SemiBold.ttf",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\offline\\fonts\\NotoSansArabic-SemiBold.ttf"
     },
     {
-      "Identity": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\offline-fonts.css",
+      "Identity": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\lib\\offline\\offline-fonts.css",
       "SourceId": "TasksWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\FinalVersions\\TasksWebApp_Details_Tree_Images_FA_Fixed (14)\\TasksWebApp\\wwwroot\\",
       "BasePath": "_content/TasksWebApp",
       "RelativePath": "lib/offline/offline-fonts.css",
       "AssetKind": "All",

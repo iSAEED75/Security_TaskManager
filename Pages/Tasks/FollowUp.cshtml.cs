@@ -49,8 +49,16 @@ public class FollowUpModel(AppDbContext db, IWebHostEnvironment env) : PageModel
         if (Upload.Length > maxBytes) { ModelState.AddModelError(nameof(Upload), "حداکثر حجم فایل ۱۰ مگابایت است."); return Page(); }
         var originalName = Path.GetFileName(Upload.FileName);
         var ext = Path.GetExtension(originalName).ToLowerInvariant();
-        string[] allowed = [".pdf", ".png", ".jpg", ".jpeg", ".docx", ".xlsx", ".txt", ".csv"];
+        string[] allowed = [".pdf", ".png", ".jpg", ".jpeg", ".webp", ".docx", ".xlsx", ".txt", ".csv"];
         if (!allowed.Contains(ext)) { ModelState.AddModelError(nameof(Upload), "این نوع فایل مجاز نیست."); return Page(); }
+        if (ext is ".jpg" or ".jpeg" or ".png" or ".webp")
+        {
+            if (!await HasValidImageSignatureAsync(Upload, ext))
+            {
+                ModelState.AddModelError(nameof(Upload), "محتوای فایل با فرمت تصویر انتخاب‌شده مطابقت ندارد.");
+                return Page();
+            }
+        }
         var stored = Guid.NewGuid().ToString("N") + ext;
         var folder = Path.Combine(env.ContentRootPath, "App_Data", "TaskAttachments");
         Directory.CreateDirectory(folder);
@@ -78,9 +86,36 @@ public class FollowUpModel(AppDbContext db, IWebHostEnvironment env) : PageModel
         return PhysicalFile(path, attachment.ContentType, attachment.OriginalFileName);
     }
 
+    public async Task<IActionResult> OnGetPreviewAsync(int attachmentId)
+    {
+        var attachment = await db.TaskAttachments.Include(x => x.TaskItem)
+            .FirstOrDefaultAsync(x => x.Id == attachmentId);
+        if (attachment?.TaskItem is null || attachment.TaskItem.IsDeleted) return NotFound();
+        if (!CanView(attachment.TaskItem)) return Forbid();
+        var ext = Path.GetExtension(attachment.StoredFileName).ToLowerInvariant();
+        var contentType = ext switch { ".jpg" or ".jpeg" => "image/jpeg", ".png" => "image/png", ".webp" => "image/webp", _ => null };
+        if (contentType is null) return BadRequest("این پیوست تصویر قابل نمایش نیست.");
+        var path = Path.Combine(env.ContentRootPath, "App_Data", "TaskAttachments", attachment.StoredFileName);
+        if (!System.IO.File.Exists(path)) return NotFound();
+        Response.Headers.CacheControl = "private, no-store";
+        Response.Headers["X-Content-Type-Options"] = "nosniff";
+        return new PhysicalFileResult(path, contentType) { EnableRangeProcessing = false };
+    }
+
+    private static async Task<bool> HasValidImageSignatureAsync(IFormFile file, string extension)
+    {
+        var header = new byte[12];
+        await using var stream = file.OpenReadStream();
+        var read = await stream.ReadAsync(header.AsMemory(0, header.Length));
+        if (extension is ".jpg" or ".jpeg") return read >= 3 && header[0] == 0xFF && header[1] == 0xD8 && header[2] == 0xFF;
+        if (extension == ".png") return read >= 8 && header.Take(8).SequenceEqual(new byte[] { 137, 80, 78, 71, 13, 10, 26, 10 });
+        if (extension == ".webp") return read >= 12 && header.Take(4).SequenceEqual("RIFF"u8.ToArray()) && header.Skip(8).Take(4).SequenceEqual("WEBP"u8.ToArray());
+        return false;
+    }
+
     private async Task<bool> LoadAsync(int id)
     {
-        Item = await db.TaskItems.AsNoTracking().Include(x => x.CreatedBy).Include(x => x.AssignedTo)
+        Item = await db.TaskItems.AsNoTracking().Include(x => x.CreatedBy).Include(x => x.AssignedTo).Include(x => x.TaskList).Include(x => x.ParentTask).Include(x => x.SubTasks)
             .FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
         if (Item is null || !CanView(Item)) return false;
         Comments = await db.TaskComments.AsNoTracking().Include(x => x.User).Where(x => x.TaskItemId == id).OrderByDescending(x => x.CreatedAt).ToListAsync();
