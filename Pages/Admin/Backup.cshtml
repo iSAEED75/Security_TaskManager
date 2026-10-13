@@ -1,0 +1,10 @@
+@page
+@model TasksWebApp.Pages.Admin.BackupModel
+@{ ViewData["Title"] = "پشتیبان‌گیری و بازیابی"; }
+<h1 class="h4 mb-3">پشتیبان‌گیری و بازیابی اطلاعات</h1>
+@if (TempData["Message"] is string message) { <div class="alert alert-success">@message</div> }
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<div class="row g-4">
+    <div class="col-lg-6"><section class="card h-100"><div class="card-header fw-bold">تهیه نسخه پشتیبان</div><div class="card-body"><p>فایل ZIP شامل گزارش‌ها، وظایف، فهرست‌ها، دسته‌بندی‌ها، تاریخچه فعالیت‌ها، پیگیری‌ها و فایل‌های پیوست موجود است.</p><p class="small text-muted">اطلاعات ورود و گذرواژه کاربران داخل نسخه پشتیبان قرار نمی‌گیرد؛ بازیابی روی کاربران موجود انجام می‌شود.</p><a asp-page-handler="Download" class="btn btn-success">دریافت نسخه پشتیبان ZIP</a></div></section></div>
+    <div class="col-lg-6"><section class="card h-100 border-warning"><div class="card-header fw-bold">بازیابی از نسخه پشتیبان</div><div class="card-body"><div class="alert alert-warning">بازیابی فعلی اطلاعات نسخه پشتیبان را به سامانه اضافه می‌کند و اطلاعات فعلی را حذف نمی‌کند. اگر یک فایل را دوباره بازیابی کنی، ممکن است موارد تکراری ایجاد شوند.</div><form method="post" asp-page-handler="Restore" enctype="multipart/form-data"><label asp-for="BackupFile" class="form-label">فایل ZIP پشتیبان</label><input asp-for="BackupFile" type="file" accept=".zip" class="form-control mb-3" /><div class="form-check mb-3"><input asp-for="ConfirmRestore" class="form-check-input" /><label asp-for="ConfirmRestore" class="form-check-label">متوجه‌ام؛ فایل انتخاب‌شده را بررسی و اطلاعاتش را وارد می‌کنم.</label></div><button class="btn btn-warning">شروع بازیابی</button></form></div></section></div>
+</div>

@@ -1,0 +1,41 @@
+@page "{id:int}"
+@model TasksWebApp.Pages.Tasks.DeleteModel
+@using TasksWebApp.Models
+@using TasksWebApp.Helpers
+@{
+    ViewData["Title"] = "تأیید حذف";
+}
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-danger">
+            <div class="card-header bg-danger text-white">
+                <h1 class="h5 mb-0"><i class="bi bi-exclamation-triangle ms-1"></i> تأیید حذف</h1>
+            </div>
+            <div class="card-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <p>آیا می‌خواهی مورد زیر را به سطل بازیافت منتقل کنی؟ مدیر سامانه می‌تواند آن را بازیابی کند.</p>
+                <dl class="row">
+                    <dt class="col-sm-3">نوع</dt>
+                    <dd class="col-sm-9">@(Model.Item?.RecordType == TaskRecordType.Todo ? "وظیفه" : "گزارش کار")</dd>
+                    <dt class="col-sm-3">عنوان</dt>
+                    <dd class="col-sm-9 fw-bold">@Model.Item?.Title</dd>
+                    <dt class="col-sm-3">تاریخ</dt>
+                    <dd class="col-sm-9">@(Model.Item is null ? "—" : PersianDateHelper.Format(Model.Item.WorkDate))</dd>
+                    <dt class="col-sm-3">ثبت‌کننده</dt>
+                    <dd class="col-sm-9">@Model.Item?.CreatedBy?.FullName</dd>
+                </dl>
+                @if (Model.SubTaskCount > 0)
+                {
+                    <div class="alert alert-warning">
+                        این مورد دارای @Model.SubTaskCount زیر‌وظیفه است. با تأیید، خود مورد و تمام زیر‌وظیفه‌های وابسته نیز حذف می‌شوند.
+                    </div>
+                }
+                <form method="post">
+                    <input type="hidden" name="ConfirmDelete" value="true" />
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash ms-1"></i> انتقال به سطل بازیافت</button>
+                    <a asp-page="Index" class="btn btn-outline-secondary">انصراف</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+@page "{id:int}"
+@model TasksWebApp.Pages.Tasks.FollowUpModel
+@using TasksWebApp.Helpers
+@{
+    ViewData["Title"] = "پیگیری و پیوست‌ها";
+}
+@if (TempData["Message"] is string message) { <div class="alert alert-success">@message</div> }
+<div class="d-flex justify-content-between align-items-center mb-3"><h1 class="h4">پیگیری وظیفه / گزارش</h1><a asp-page="Index" class="btn btn-outline-secondary">بازگشت</a></div>
+@if (Model.Item is not null)
+{
+    <div class="card mb-4"><div class="card-body"><div class="d-flex justify-content-between gap-3"><h2 class="h5">@Model.Item.Title</h2><span class="badge bg-secondary">@PersianDateHelper.Format(Model.Item.WorkDate)</span></div><p class="mb-1">@Model.Item.Description</p><small class="text-muted">ثبت‌کننده: @Model.Item.CreatedBy?.FullName | مسئول: @(Model.Item.AssignedTo?.FullName ?? "تعیین نشده")</small></div></div>
+    <div class="row g-4">
+        <div class="col-lg-7"><section class="card h-100"><div class="card-header fw-bold">یادداشت‌ها و پیگیری‌ها</div><div class="card-body">
+            <form method="post" asp-page-handler="Comment" asp-route-id="@Model.Item.Id" class="mb-4"><div asp-validation-summary="ModelOnly" class="text-danger"></div><label asp-for="CommentText" class="form-label">ثبت یادداشت جدید</label><textarea asp-for="CommentText" class="form-control mb-2" rows="3" maxlength="2000" placeholder="نتیجه پیگیری، مانع یا اقدام بعدی..."></textarea><button class="btn btn-primary">ثبت پیگیری</button></form>
+            @if (Model.Comments.Count == 0) { <p class="text-muted">هنوز پیگیری‌ای ثبت نشده است.</p> }
+            @foreach (var c in Model.Comments) { <article class="border rounded p-3 mb-2"><div class="d-flex justify-content-between gap-2"><strong>@c.User?.FullName</strong><small class="text-muted">@c.CreatedAt.ToLocalTime().ToString("yyyy/MM/dd HH:mm")</small></div><p class="mb-0 mt-2" style="white-space:pre-wrap">@c.Body</p></article> }
+        </div></section></div>
+        <div class="col-lg-5"><section class="card h-100"><div class="card-header fw-bold">فایل‌های پیوست</div><div class="card-body">
+            <form method="post" asp-page-handler="Upload" asp-route-id="@Model.Item.Id" enctype="multipart/form-data" class="mb-3"><label asp-for="Upload" class="form-label">انتخاب فایل (حداکثر ۱۰ مگابایت)</label><input asp-for="Upload" type="file" class="form-control mb-2" accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.txt,.csv" /><span asp-validation-for="Upload" class="text-danger"></span><button class="btn btn-outline-primary mt-2">بارگذاری فایل</button></form><hr />
+            @if (Model.Attachments.Count == 0) { <p class="text-muted">فایلی پیوست نشده است.</p> }
+            @foreach (var f in Model.Attachments) { <div class="d-flex justify-content-between align-items-center border-bottom py-2 gap-2"><div><div class="fw-semibold">@f.OriginalFileName</div><small class="text-muted">@Math.Ceiling(f.SizeBytes / 1024d) کیلوبایت · @f.UploadedBy?.FullName</small></div><a class="btn btn-sm btn-outline-secondary" asp-page-handler="Download" asp-route-id="@Model.Item.Id" asp-route-attachmentId="@f.Id">دریافت</a></div> }
+        </div></section></div>
+    </div>
+}

@@ -1,0 +1,19 @@
+/* Offline icon substitutes; no external font required. */
+.bi{display:inline-block;font-style:normal;font-weight:700;line-height:1} .bi::before{display:inline-block}
+.bi-journal-text::before{content:"▤"}
+.bi-list-check::before{content:"☑"}
+.bi-plus-circle::before{content:"⊕"}
+.bi-folder2-open::before{content:"▰"}
+.bi-person-circle::before{content:"●"}
+.bi-journal-plus::before{content:"⊞"}
+.bi-journal-check::before{content:"☑"}
+.bi-journal-x::before{content:"☒"}
+.bi-node-plus::before{content:"＋"}
+.bi-pencil-square::before{content:"✎"}
+.bi-trash::before{content:"▤"}
+.bi-search::before{content:"⌕"}
+.bi-bell::before{content:"♧"}
+.bi-bell-fill::before{content:"♧"}
+.bi-check2-circle::before{content:"✓"}
+.bi-file-earmark-excel::before{content:"▦"}
+.bi-plus-lg::before{content:"＋"}

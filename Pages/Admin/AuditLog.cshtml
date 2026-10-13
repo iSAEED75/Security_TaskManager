@@ -1,0 +1,9 @@
+@page
+@model TasksWebApp.Pages.Admin.AuditLogModel
+@{ ViewData["Title"] = "تاریخچه فعالیت‌ها"; }
+<h1 class="h4 mb-3">تاریخچه فعالیت‌ها و رخدادهای امنیتی</h1>
+<form method="get" class="row g-2 mb-3"><div class="col-md-8"><input name="search" class="form-control" placeholder="جست‌وجو در کاربر، عملیات یا شرح" /></div><div class="col-auto"><button class="btn btn-primary">جست‌وجو</button></div></form>
+<div class="table-responsive card"><table class="table table-sm table-striped align-middle mb-0"><thead><tr><th>زمان</th><th>کاربر</th><th>عملیات</th><th>بخش</th><th>شناسه</th><th>شرح</th><th>IP</th></tr></thead><tbody>
+@if (Model.Items.Count == 0) { <tr><td colspan="7" class="text-center text-muted py-4">رخدادی ثبت نشده است.</td></tr> }
+@foreach (var item in Model.Items) { <tr><td>@item.CreatedAt.ToLocalTime().ToString("yyyy/MM/dd HH:mm:ss")</td><td>@item.ActorName</td><td>@item.Action</td><td>@item.EntityType</td><td>@item.EntityId</td><td>@item.Details</td><td>@item.IpAddress</td></tr> }
+</tbody></table></div>

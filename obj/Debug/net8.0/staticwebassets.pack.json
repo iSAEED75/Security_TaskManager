@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\bootstrap-icons.min.css",
+      "PackagePath": "staticwebassets\\lib\\offline\\bootstrap-icons.min.css"
+    },
+    {
+      "Id": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\offline\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\offline\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Bold.ttf",
+      "PackagePath": "staticwebassets\\lib\\offline\\fonts\\NotoSansArabic-Bold.ttf"
+    },
+    {
+      "Id": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Medium.ttf",
+      "PackagePath": "staticwebassets\\lib\\offline\\fonts\\NotoSansArabic-Medium.ttf"
+    },
+    {
+      "Id": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-Regular.ttf",
+      "PackagePath": "staticwebassets\\lib\\offline\\fonts\\NotoSansArabic-Regular.ttf"
+    },
+    {
+      "Id": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\fonts\\NotoSansArabic-SemiBold.ttf",
+      "PackagePath": "staticwebassets\\lib\\offline\\fonts\\NotoSansArabic-SemiBold.ttf"
+    },
+    {
+      "Id": "C:\\Projects\\chatgpt_Version\\TasksWebApp_Profile_Security_Enhancements_FA\\TasksWebApp\\wwwroot\\lib\\offline\\offline-fonts.css",
+      "PackagePath": "staticwebassets\\lib\\offline\\offline-fonts.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TasksWebApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.TasksWebApp.props",
+      "PackagePath": "build\\TasksWebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.TasksWebApp.props",
+      "PackagePath": "buildMultiTargeting\\TasksWebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.TasksWebApp.props",
+      "PackagePath": "buildTransitive\\TasksWebApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,8 @@
+@page
+@model TasksWebApp.Pages.Reports.PerformanceModel
+@{ ViewData["Title"] = "عملکرد کارکنان"; }
+<div class="d-flex justify-content-between align-items-center mb-3"><h1 class="h4">گزارش عملکرد کارکنان</h1><a asp-page-handler="Export" asp-route-FromShamsi="@Model.FromShamsi" asp-route-ToShamsi="@Model.ToShamsi" class="btn btn-outline-success">خروجی اکسل</a></div>
+<form method="get" class="card card-body mb-3"><div class="row g-2 align-items-end"><div class="col-md-4"><label class="form-label">از تاریخ شمسی</label><input name="FromShamsi" value="@Model.FromShamsi" class="form-control" placeholder="۱۴۰۵/۰۱/۰۱" /></div><div class="col-md-4"><label class="form-label">تا تاریخ شمسی</label><input name="ToShamsi" value="@Model.ToShamsi" class="form-control" placeholder="۱۴۰۵/۱۲/۲۹" /></div><div class="col-auto"><button class="btn btn-primary">اعمال فیلتر</button></div></div></form>
+<div class="table-responsive card"><table class="table table-hover align-middle mb-0"><thead><tr><th>کارمند</th><th>وظایف واگذارشده</th><th>انجام‌شده</th><th>عقب‌افتاده</th><th>ساعات کار</th><th>گزارش کار</th><th>درصد تکمیل</th></tr></thead><tbody>
+@foreach (var s in Model.Stats) { var pct=s.Assigned==0?0:(int)Math.Round(s.Completed*100d/s.Assigned); <tr><td>@s.Name</td><td>@s.Assigned</td><td>@s.Completed</td><td><span class="@(s.Overdue>0?"text-danger fw-bold":"")">@s.Overdue</span></td><td>@s.Hours.ToString("0.##")</td><td>@s.Reports</td><td><div class="progress" role="progressbar" aria-valuenow="@pct" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width:@pct%">@pct٪</div></div></td></tr> }
+</tbody></table></div>

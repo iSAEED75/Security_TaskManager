@@ -1,0 +1,12 @@
+@page
+@model TasksWebApp.Pages.Admin.RecycleBinModel
+@using TasksWebApp.Helpers
+@using TasksWebApp.Models
+@{ ViewData["Title"] = "سطل بازیافت"; }
+<h1 class="h4 mb-3">سطل بازیافت</h1>
+@if (TempData["Message"] is string msg) { <div class="alert alert-info">@msg</div> }
+<div class="alert alert-warning">بازیابی، مورد و زیر‌وظیفه‌های حذف‌شده آن را برمی‌گرداند. حذف دائمی قابل بازگشت نیست.</div>
+<div class="table-responsive card"><table class="table table-hover align-middle mb-0"><thead><tr><th>نوع</th><th>عنوان</th><th>ثبت‌کننده</th><th>تاریخ انتقال</th><th>عملیات</th></tr></thead><tbody>
+@if (Model.Items.Count == 0) { <tr><td colspan="5" class="text-center text-muted py-4">سطل بازیافت خالی است.</td></tr> }
+@foreach (var item in Model.Items) { <tr><td>@(item.RecordType == TaskRecordType.Todo ? "وظیفه" : "گزارش کار")</td><td>@item.Title</td><td>@item.CreatedBy?.FullName</td><td>@(item.DeletedAt?.ToLocalTime().ToString("yyyy/MM/dd HH:mm") ?? "—")</td><td class="d-flex gap-2"><form method="post" asp-page-handler="Restore"><input type="hidden" name="id" value="@item.Id"/><button class="btn btn-sm btn-success">بازیابی</button></form><form method="post" asp-page-handler="PermanentDelete" onsubmit="return confirm('این مورد و زیر‌وظیفه‌های آن برای همیشه حذف شوند؟ این عمل قابل بازگشت نیست.');"><input type="hidden" name="id" value="@item.Id"/><input type="hidden" name="confirmDelete" value="true"/><button class="btn btn-sm btn-outline-danger">حذف دائمی</button></form></td></tr> }
+</tbody></table></div>

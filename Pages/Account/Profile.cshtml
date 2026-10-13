@@ -1,0 +1,138 @@
+@page
+@model TasksWebApp.Pages.Account.ProfileModel
+@{
+    ViewData["Title"] = "پروفایل کاربری";
+}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+        <h1 class="page-heading mb-1">پروفایل کاربری</h1>
+        <p class="text-muted mb-0">مدیریت اطلاعات حساب، عکس پروفایل و امنیت گذرواژه</p>
+    </div>
+    <span class="badge text-bg-light border"><i class="bi bi-shield-lock ms-1"></i> @(Model.CurrentUser?.Role == "Admin" ? "مدیر سامانه" : "کاربر عادی")</span>
+</div>
+@if (TempData["Success"] is string success)
+{
+    <div class="alert alert-success" role="status">@success</div>
+}
+@if (Model.ForceChange || Model.CurrentUser?.MustChangePassword == true)
+{
+    <div class="alert alert-warning" role="alert"><strong>اقدام امنیتی ضروری:</strong> این حساب باید گذرواژه اولیه را تغییر دهد. تا آن زمان سایر امکانات حساب محدود هستند.</div>
+}
+@if (Model.CurrentUser?.LastFailedLoginAt is DateTime failedAt && (Model.CurrentUser.LastLoginAt is null || failedAt > Model.CurrentUser.LastLoginAt || failedAt > DateTime.UtcNow.AddDays(-7)))
+{
+    <div class="alert alert-warning" role="alert"><i class="bi bi-shield-exclamation ms-1"></i> آخرین تلاش ناموفق ورود: @TasksWebApp.Helpers.PersianDateHelper.Format(failedAt.ToLocalTime()) — تعداد تلاش‌های ناموفق از آخرین ورود موفق: @Model.CurrentUser.FailedLoginCount</div>
+}
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<section class="card p-3 mb-4">
+    <h2 class="h5 mb-3">خلاصه عملکرد شخصی</h2>
+    <div class="row g-3 text-center">
+        <div class="col-6 col-lg-4"><div class="profile-stat"><div class="text-muted small">وظایف ثبت‌شده</div><div class="fs-3 fw-bold">@Model.TodoCount</div></div></div>
+        <div class="col-6 col-lg-4"><div class="profile-stat"><div class="text-muted small">گزارش‌های کار</div><div class="fs-3 fw-bold">@Model.WorkReportCount</div></div></div>
+        <div class="col-12 col-lg-4"><div class="profile-stat"><div class="text-muted small">مجموع ساعات گزارش‌شده</div><div class="fs-3 fw-bold">@Model.TotalHours.ToString("0.##") <small>ساعت</small></div></div></div>
+    </div>
+</section>
+<div class="row g-4">
+    <div class="col-lg-5">
+        <section class="card p-4 h-100">
+            <h2 class="h5 mb-3">اطلاعات حساب</h2>
+            <div class="d-flex align-items-center gap-3 mb-4">
+                <div class="profile-avatar">
+                    <i class="bi bi-person-fill profile-avatar-fallback"></i>
+                    @if (!string.IsNullOrWhiteSpace(Model.CurrentUser?.ProfilePhotoFileName))
+                    {
+                        <img src="?handler=Photo" alt="عکس پروفایل" onerror="this.remove()" />
+                    }
+                </div>
+                <div>
+                    <div class="fw-bold fs-5">@Model.CurrentUser?.FullName</div>
+                    <div class="text-muted">@Model.CurrentUser?.Username</div>
+                </div>
+            </div>
+            <dl class="row profile-details mb-4">
+                <dt class="col-5">نام و نام خانوادگی</dt><dd class="col-7">@Model.CurrentUser?.FullName</dd>
+                <dt class="col-5">نام کاربری</dt><dd class="col-7">@Model.CurrentUser?.Username</dd>
+                <dt class="col-5">شماره پرسنلی</dt><dd class="col-7">@Model.CurrentUser?.EmployeeNumber</dd>
+                <dt class="col-5">نوع حساب</dt><dd class="col-7">@(Model.CurrentUser?.Role == "Admin" ? "مدیر سامانه" : "کاربر عادی")</dd>
+                <dt class="col-5">تاریخ عضویت</dt><dd class="col-7">@TasksWebApp.Helpers.PersianDateHelper.Format(Model.CurrentUser!.CreatedAt.ToLocalTime())</dd>
+                <dt class="col-5">آخرین ورود موفق</dt><dd class="col-7">@(Model.CurrentUser?.LastLoginAt is DateTime loginAt ? TasksWebApp.Helpers.PersianDateHelper.Format(loginAt.ToLocalTime()) : "ثبت نشده")</dd>
+            </dl>
+            @if (Model.CurrentUser?.MustChangePassword != true)
+            {
+                <hr />
+                <h3 class="h6 mb-3">ویرایش نام و نام خانوادگی</h3>
+                <form method="post" asp-page-handler="UpdateName" class="mb-4">
+                    <div class="mb-2"><label asp-for="FullName" class="form-label">نام و نام خانوادگی</label><input asp-for="FullName" class="form-control" maxlength="150" autocomplete="name" /><span asp-validation-for="FullName" class="text-danger"></span></div>
+                    <div class="form-text mb-2">نام کاربری و شماره پرسنلی اطلاعات کنترل‌شده هستند و از این بخش تغییر نمی‌کنند.</div>
+                    <button class="btn btn-outline-primary" type="submit">ذخیره نام</button>
+                </form>
+                <hr />
+                <h3 class="h6 mb-2">تغییر عکس پروفایل</h3>
+            <p class="text-muted small">فرمت‌های JPG، PNG و WebP؛ حداکثر ۳ مگابایت. تصویر به‌صورت خصوصی ذخیره می‌شود.</p>
+            <form method="post" enctype="multipart/form-data" asp-page-handler="UploadPhoto">
+                <div class="mb-3">
+                    <label asp-for="PhotoFile" class="form-label">انتخاب تصویر</label>
+                    <input asp-for="PhotoFile" class="form-control" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" />
+                    <span asp-validation-for="PhotoFile" class="text-danger"></span>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-upload ms-1"></i> بارگذاری تصویر</button>
+                </div>
+            </form>
+            @if (Model.CurrentUser?.MustChangePassword != true && !string.IsNullOrWhiteSpace(Model.CurrentUser?.ProfilePhotoFileName))
+            {
+                <form method="post" asp-page-handler="RemovePhoto" class="mt-2" onsubmit="return confirm('عکس پروفایل حذف شود؟');">
+                    <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash ms-1"></i> حذف عکس فعلی</button>
+                </form>
+            }
+            }
+        </section>
+    </div>
+    <div class="col-lg-7">
+        <section class="card p-4 mb-4">
+            <h2 class="h5 mb-1">تغییر گذرواژه</h2>
+            <p class="text-muted small mb-4">@(Model.CurrentUser?.MustChangePassword == true ? "برای فعال‌شدن امکانات سامانه، گذرواژه موقت را با یک گذرواژه شخصی جدید جایگزین کن." : "برای تغییر گذرواژه باید گذرواژه فعلی را وارد کنی. پس از تغییر، لازم است دوباره وارد سامانه شوی.")</p>
+            <form method="post" asp-page-handler="ChangePassword">
+                <div class="mb-3">
+                    <label asp-for="CurrentPassword" class="form-label">گذرواژه فعلی</label>
+                    <input asp-for="CurrentPassword" class="form-control" type="password" autocomplete="current-password" />
+                    <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="NewPassword" class="form-label">گذرواژه جدید</label>
+                    <input asp-for="NewPassword" class="form-control" type="password" autocomplete="new-password" minlength="8" />
+                    <div class="form-text">حداقل ۸ نویسه انتخاب کن و از گذرواژه‌ای استفاده کن که در سرویس دیگری نداری.</div>
+                    <span asp-validation-for="NewPassword" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ConfirmNewPassword" class="form-label">تکرار گذرواژه جدید</label>
+                    <input asp-for="ConfirmNewPassword" class="form-control" type="password" autocomplete="new-password" minlength="8" />
+                    <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="bi bi-key ms-1"></i> تغییر گذرواژه</button>
+            </form>
+        </section>
+        @if (Model.CurrentUser?.MustChangePassword != true)
+        {
+        <section class="card p-4 mb-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3"><h2 class="h5 mb-0">نشست‌های فعال حساب</h2><form method="post" asp-page-handler="SignOutOtherSessions" onsubmit="return confirm('از تمام دستگاه‌های دیگر خارج شود؟');"><button class="btn btn-sm btn-outline-danger" type="submit">خروج از دستگاه‌های دیگر</button></form></div>
+            <p class="text-muted small">حداکثر ۲۰ نشست اخیر فعال نمایش داده می‌شود. خروج از نشست‌های دیگر در درخواست بعدی آن دستگاه اعمال می‌شود.</p>
+            <div class="table-responsive"><table class="table table-sm align-middle"><thead><tr><th>وضعیت</th><th>آخرین فعالیت</th><th>IP</th><th>دستگاه/مرورگر</th></tr></thead><tbody>
+            @foreach (var session in Model.Sessions)
+            {
+                <tr><td>@(session.Id == User.FindFirst("sid")?.Value ? "این دستگاه" : "دستگاه دیگر")</td><td>@session.LastSeenAt.ToLocalTime().ToString("yyyy/MM/dd HH:mm")</td><td>@(session.IpAddress ?? "—")</td><td class="small text-break">@(string.IsNullOrWhiteSpace(session.UserAgent) ? "—" : session.UserAgent)</td></tr>
+            }
+            @if (Model.Sessions.Count == 0) { <tr><td colspan="4" class="text-muted text-center">نشست فعالی ثبت نشده است.</td></tr> }
+            </tbody></table></div>
+        </section>
+        <section class="card p-4 profile-security-note">
+            <h2 class="h6"><i class="bi bi-shield-check ms-1"></i> توصیه‌های امنیتی</h2>
+            <ul class="mb-0">
+                <li>از گذرواژه‌ای طولانی و منحصربه‌فرد استفاده کن.</li>
+                <li>گذرواژه را در اختیار دیگران قرار نده و هنگام ترک رایانه از سامانه خارج شو.</li>
+                <li>برای حساب‌های مدیریتی، دسترسی را فقط به افراد مورداعتماد بده.</li>
+                <li>از دیتابیس و پوشه فایل‌های سامانه به‌صورت منظم نسخه پشتیبان تهیه کن.</li>
+            </ul>
+        </section>
+        }
+    </div>
+</div>

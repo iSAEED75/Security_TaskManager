@@ -1,0 +1,85 @@
+@page
+@model TasksWebApp.Pages.Tasks.IndexModel
+@using TasksWebApp.Models
+@using TasksWebApp.Helpers
+@using TaskStatus = TasksWebApp.Models.TaskStatus
+@{
+    ViewData["Title"] = "صفحه اصلی وظایف";
+    string StatusLabel(TaskStatus s) => s switch { TaskStatus.Pending => "در انتظار انجام", TaskStatus.InProgress => "در حال انجام", TaskStatus.Completed => "انجام‌شده", _ => "نامشخص" };
+    string PriorityLabel(TaskPriority p) => p switch { TaskPriority.Low => "کم", TaskPriority.Medium => "معمولی", TaskPriority.High => "زیاد", TaskPriority.Critical => "بسیار مهم", _ => "نامشخص" };
+    string StatusClass(TaskStatus s) => s switch { TaskStatus.Completed => "success", TaskStatus.InProgress => "primary", TaskStatus.Pending => "secondary", _ => "dark" };
+    string PriorityClass(TaskPriority p) => p switch { TaskPriority.Critical => "danger", TaskPriority.High => "warning text-dark", TaskPriority.Medium => "info text-dark", TaskPriority.Low => "secondary", _ => "dark" };
+}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div><h1 class="h3 page-heading mb-1">صفحه اصلی وظایف و گزارش کار</h1><p class="text-muted mb-0">کارهای روزانه، مهلت‌ها، گزارش‌ها و پیگیری وظایف در یک نگاه.</p></div>
+    <div class="d-flex gap-2"><a class="btn btn-outline-primary" asp-page="/Lists/Index"><i class="bi bi-folder2-open ms-1"></i> فهرست‌ها</a><a class="btn btn-primary" asp-page="Create"><i class="bi bi-plus-lg ms-1"></i> ثبت گزارش یا وظیفه</a></div>
+</div>
+@if (TempData["Message"] is string message) { <div class="alert alert-info">@message</div> }
+<div class="row g-3 mb-4 dashboard-metrics">
+    <div class="col-6 col-lg-3"><div class="card p-3 h-100 metric-card"><div class="text-muted small">وظایف باز</div><div class="fs-2 fw-bold">@Model.OpenCount</div><a class="small" asp-route-RecordType="1" asp-route-Status="0">مشاهده وظایف</a></div></div>
+    <div class="col-6 col-lg-3"><div class="card p-3 h-100 metric-card"><div class="text-muted small">سررسید امروز</div><div class="fs-2 fw-bold">@Model.TodayCount</div><a class="small" asp-route-RecordType="1" asp-route-FromShamsi="@PersianDateHelper.Format(DateTime.Today)" asp-route-ToShamsi="@PersianDateHelper.Format(DateTime.Today)">مشاهده امروز</a></div></div>
+    <div class="col-6 col-lg-3"><div class="card p-3 h-100 metric-card"><div class="text-muted small">عقب‌افتاده</div><div class="fs-2 fw-bold text-danger">@Model.OverdueCount</div><a class="small" asp-route-OverdueOnly="true">مشاهده عقب‌افتاده‌ها</a></div></div>
+    <div class="col-6 col-lg-3"><div class="card p-3 h-100 metric-card"><div class="text-muted small">انجام‌شده</div><div class="fs-2 fw-bold text-success">@Model.CompletedCount</div><a class="small" asp-route-Status="2">مشاهده انجام‌شده‌ها</a></div></div>
+</div>
+@if (Model.ReminderItems.Count > 0) {
+<div class="card p-3 mb-3 border-start border-4 border-warning"><div class="d-flex flex-wrap justify-content-between align-items-center gap-2"><h2 class="h6 mb-0"><i class="bi bi-bell-fill text-warning ms-1"></i>یادآوری‌های رسیده</h2><button type="button" class="btn btn-sm btn-outline-secondary" id="enableNotifications">فعال‌سازی اعلان مرورگر</button></div>
+<ul class="mb-0 mt-2">@foreach (var reminder in Model.ReminderItems) { <li><a asp-page="Edit" asp-route-id="@reminder.Id">@reminder.Title</a> <span class="text-muted small">(@(reminder.ReminderAt?.ToString("HH:mm")))</span></li> }</ul>
+</div>
+}
+<form method="get" class="card card-body mb-3"><div class="row g-2 align-items-end">
+    <div class="col-md-4"><label class="form-label">جست‌وجو</label><input class="form-control" name="Search" value="@Model.Search" placeholder="عنوان یا شرح وظیفه" maxlength="200" /></div>
+    <div class="col-md-2"><label class="form-label">نوع ثبت</label><select name="RecordType" class="form-select"><option value="">همه موارد</option><option value="0" selected="@(Model.RecordType == 0)">گزارش کار</option><option value="1" selected="@(Model.RecordType == 1)">وظیفه</option></select></div>
+    <div class="col-md-2"><label class="form-label">وضعیت</label><select name="Status" class="form-select"><option value="">همه وضعیت‌ها</option>@foreach (TaskStatus st in Enum.GetValues<TaskStatus>()) { <option value="@((int)st)" selected="@(Model.Status == (int)st)">@StatusLabel(st)</option> }</select></div>
+    <div class="col-md-2"><label class="form-label">اولویت</label><select name="Priority" class="form-select"><option value="">همه اولویت‌ها</option>@foreach (TaskPriority pr in Enum.GetValues<TaskPriority>()) { <option value="@((int)pr)" selected="@(Model.Priority == (int)pr)">@PriorityLabel(pr)</option> }</select></div>
+    <div class="col-md-2"><label class="form-label">فهرست</label><select name="TaskListId" class="form-select"><option value="">همه فهرست‌ها</option>@foreach (var list in Model.Lists) { <option value="@list.Id" selected="@(Model.TaskListId == list.Id)">@list.Name</option> }</select></div>
+    <div class="col-md-3"><label class="form-label">دسته‌بندی</label><select name="CategoryId" class="form-select"><option value="">همه دسته‌بندی‌ها</option>@foreach (var category in Model.Categories) { <option value="@category.Id" selected="@(Model.CategoryId == category.Id)">@category.Name</option> }</select></div>
+    @if (Model.IsAdmin) { <div class="col-md-3"><label class="form-label">مسئول</label><select name="AssignedToId" class="form-select"><option value="">همه کارکنان</option>@foreach (var employee in Model.Employees) { <option value="@employee.Id" selected="@(Model.AssignedToId == employee.Id)">@employee.FullName</option> }</select></div> }
+    <div class="col-md-2"><label class="form-label">از تاریخ شمسی</label><input class="form-control" name="FromShamsi" value="@Model.FromShamsi" placeholder="۱۴۰۵/۰۱/۰۱" dir="ltr" /></div>
+    <div class="col-md-2"><label class="form-label">تا تاریخ شمسی</label><input class="form-control" name="ToShamsi" value="@Model.ToShamsi" placeholder="۱۴۰۵/۰۱/۳۱" dir="ltr" /></div>
+    <div class="col-md-2"><label class="form-label">مرتب‌سازی</label><select class="form-select" name="Sort"><option value="due" selected="@(Model.Sort == "due")">موعد انجام</option><option value="priority" selected="@(Model.Sort == "priority")">اولویت</option><option value="starred" selected="@(Model.Sort == "starred")">موارد مهم</option><option value="created" selected="@(Model.Sort == "created")">جدیدترین</option><option value="custom" selected="@(Model.Sort == "custom")">ترتیب دلخواه</option><option value="title" selected="@(Model.Sort == "title")">عنوان</option></select></div>
+    <div class="col-md-3"><div class="form-check mb-2"><input class="form-check-input" type="checkbox" name="Starred" value="true" checked="@(Model.Starred == true)" id="starredFilter"/><label class="form-check-label" for="starredFilter">فقط وظایف مهم</label></div><div class="form-check"><input class="form-check-input" type="checkbox" name="OverdueOnly" value="true" checked="@(Model.OverdueOnly == true)" id="overdueFilter"/><label class="form-check-label" for="overdueFilter">فقط عقب‌افتاده‌ها</label></div></div>
+    <div class="col-md-3 d-flex gap-2"><button class="btn btn-outline-primary" type="submit"><i class="bi bi-search ms-1"></i> اعمال فیلتر</button><a class="btn btn-link" asp-page="Index">پاک‌کردن</a></div>
+</div></form>
+<div class="table-responsive card dashboard-table"><table class="table table-hover align-middle mb-0"><thead><tr><th>انجام</th><th>مهم</th><th>نوع</th><th>تاریخ شمسی</th><th>عنوان / زیر‌وظایف</th><th>مسئول</th><th>فهرست</th><th>وضعیت</th><th>اولویت</th><th>عملیات</th></tr></thead><tbody>
+@if (Model.Items.Count == 0) { <tr><td colspan="10" class="text-center text-muted py-5"><i class="bi bi-journal-x fs-2 d-block mb-2"></i>موردی با این شرایط پیدا نشد.</td></tr> }
+else { @foreach (var task in Model.Items) { <tr class="@(task.Status == TaskStatus.Completed ? "table-light" : "")"><td><form method="post" asp-page-handler="ToggleStatus" asp-route-id="@task.Id"><button class="btn btn-sm @(task.Status == TaskStatus.Completed ? "btn-success" : "btn-outline-secondary")" title="تغییر وضعیت"><i class="bi @(task.Status == TaskStatus.Completed ? "bi-check2-circle" : "bi-circle")"></i></button></form></td>
+<td><form method="post" asp-page-handler="ToggleStar" asp-route-id="@task.Id"><button class="btn btn-sm btn-link text-warning" title="تغییر اهمیت"><i class="bi @(task.IsStarred ? "bi-star-fill" : "bi-star")"></i></button></form></td>
+<td><span class="badge bg-@(task.RecordType == TaskRecordType.Todo ? "warning text-dark" : "primary")">@(task.RecordType == TaskRecordType.Todo ? "وظیفه" : "گزارش کار")</span></td><td class="text-nowrap">@PersianDateHelper.Format(task.WorkDate)</td>
+<td><div class="fw-semibold">@(task.ParentTaskId.HasValue ? "↳ " : "")@task.Title</div><div class="small text-muted">@((task.Description ?? "").Length > 90 ? (task.Description ?? "")[..90] + "…" : task.Description)</div>@if (task.SubTasks.Count > 0) { <div class="small text-primary">@task.SubTasks.Count زیر‌وظیفه</div> }@if (task.ReminderAt.HasValue && task.Status != TaskStatus.Completed) { <div class="small text-warning"><i class="bi bi-bell"></i> یادآوری @PersianDateHelper.Format(task.ReminderAt.Value) @task.ReminderAt.Value.ToString("HH:mm")</div> }</td>
+<td>@(task.AssignedTo?.FullName ?? "—")</td><td>@(task.TaskList?.Name ?? "—")</td><td><span class="badge bg-@StatusClass(task.Status)">@StatusLabel(task.Status)</span></td><td><span class="badge bg-@PriorityClass(task.Priority)">@PriorityLabel(task.Priority)</span></td>
+<td class="text-nowrap"><a class="btn btn-sm btn-outline-info" asp-page="FollowUp" asp-route-id="@task.Id" title="پیگیری و پیوست"><i class="bi bi-paperclip"></i></a> <a class="btn btn-sm btn-outline-primary" asp-page="Edit" asp-route-id="@task.Id" title="ویرایش"><i class="bi bi-pencil-square"></i></a>@if (task.RecordType == TaskRecordType.Todo && task.Status == TaskStatus.Completed) { <form method="post" asp-page-handler="ConvertToReport" asp-route-id="@task.Id" class="d-inline" onsubmit="return confirm('این وظیفه به گزارش کار تبدیل شود؟')"><button class="btn btn-sm btn-outline-success" title="تبدیل به گزارش کار"><i class="bi bi-journal-check"></i></button></form> }@if (task.RecordType == TaskRecordType.Todo) { <a class="btn btn-sm btn-outline-secondary" asp-page="Create" asp-route-ParentTaskId="@task.Id" title="افزودن زیر‌وظیفه"><i class="bi bi-node-plus"></i></a> }@if (Model.IsAdmin) { <a class="btn btn-sm btn-outline-danger" asp-page="Delete" asp-route-id="@task.Id" title="حذف"><i class="bi bi-trash"></i></a> }</td></tr> } }
+</tbody></table></div>
+@if (Model.TotalPages > 1) { <nav class="mt-3" aria-label="صفحه‌بندی"><ul class="pagination flex-wrap">@for (var pageNumber = 1; pageNumber <= Model.TotalPages; pageNumber++) { <li class="page-item @(pageNumber == Model.PageNumber ? "active" : "")"><a class="page-link" asp-route-page="@pageNumber" asp-route-Status="@Model.Status" asp-route-Priority="@Model.Priority" asp-route-CategoryId="@Model.CategoryId" asp-route-TaskListId="@Model.TaskListId" asp-route-RecordType="@Model.RecordType" asp-route-Search="@Model.Search" asp-route-Sort="@Model.Sort">@pageNumber</a></li> }</ul></nav> }
+@section Scripts {
+<script>
+(() => {
+ const button = document.getElementById('enableNotifications');
+ if (!button) return;
+ const reminders = [
+ @foreach (var reminder in Model.ReminderItems.Concat(Model.ScheduledReminders).GroupBy(x => x.Id).Select(g => g.First())) {
+     <text>{ id: @reminder.Id, title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(reminder.Title)), at: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(reminder.ReminderAt?.ToString("yyyy-MM-ddTHH:mm:ss"))) },</text>
+ }
+ ];
+ let timer = null;
+ const checkReminders = () => {
+   const now = Date.now();
+   reminders.forEach(item => {
+     if (!item.at || new Date(item.at).getTime() > now) return;
+     const key = 'taskswebapp-reminder-' + item.id;
+     if (sessionStorage.getItem(key)) return;
+     new Notification('یادآوری وظیفه', { body: item.title });
+     sessionStorage.setItem(key, '1');
+   });
+ };
+ button.addEventListener('click', async () => {
+   if (!('Notification' in window)) { alert('مرورگر شما از اعلان پشتیبانی نمی‌کند.'); return; }
+   const permission = await Notification.requestPermission();
+   if (permission === 'granted') {
+     button.textContent = 'اعلان مرورگر فعال شد';
+     checkReminders();
+     if (timer === null) timer = window.setInterval(checkReminders, 30000);
+   } else alert('اجازه نمایش اعلان داده نشد. یادآوری‌ها همچنان در سامانه نمایش داده می‌شوند.');
+ });
+})();
+</script>
+}

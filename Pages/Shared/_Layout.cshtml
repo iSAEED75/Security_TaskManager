@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - سامانه ثبت گزارش کار</title>
+    <link href="~/lib/offline/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/offline/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/offline/offline-fonts.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" asp-page="/Index"><i class="bi bi-journal-text ms-1"></i> سامانه ثبت گزارش کار</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="نمایش منو"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="mainNavigation">
+                <div class="navbar-nav me-auto align-items-lg-center gap-lg-2">
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Tasks/Index" ? "active" : "")" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Tasks/Index" ? "page" : null)" asp-page="/Tasks/Index"><i class="bi bi-list-check ms-1"></i> گزارش‌ها و وظایف</a>
+                        <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Tasks/Create" || ViewContext.RouteData.Values["page"]?.ToString() == "/Tasks/Edit" ? "active" : "")" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Tasks/Create" || ViewContext.RouteData.Values["page"]?.ToString() == "/Tasks/Edit" ? "page" : null)" asp-page="/Tasks/Create"><i class="bi bi-plus-circle ms-1"></i> ثبت گزارش یا وظیفه</a>
+                        <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Lists/Index" ? "active" : "")" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Lists/Index" ? "page" : null)" asp-page="/Lists/Index"><i class="bi bi-folder2-open ms-1"></i> فهرست‌های وظایف</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Categories/Index" ? "active" : "")" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Categories/Index" ? "page" : null)" asp-page="/Categories/Index">دسته‌بندی فعالیت‌ها</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Reports/Index" ? "active" : "")" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Reports/Index" ? "page" : null)" asp-page="/Reports/Index">گزارش‌های آماری</a>
+                            <a class="nav-link" asp-page="/Reports/Performance">عملکرد کارکنان</a>
+                            <a class="nav-link" asp-page="/Admin/Users">مدیریت کاربران</a>
+                            <a class="nav-link" asp-page="/Admin/AuditLog">تاریخچه فعالیت‌ها</a>
+                            <a class="nav-link" asp-page="/Admin/RecycleBin">سطل بازیافت</a>
+                            <a class="nav-link" asp-page="/Admin/Backup">پشتیبان‌گیری</a>
+                        }
+                        <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Account/Profile" ? "active" : "")" asp-page="/Account/Profile" title="پروفایل کاربری"><i class="bi bi-person-circle ms-1"></i>پروفایل (@User.Identity.Name)</a>
+                        <form method="post" asp-page="/Account/Logout" class="ms-lg-2">
+                            <button class="btn btn-sm btn-outline-light" type="submit">خروج</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="container py-4 app-main @(ViewContext.RouteData.Values["page"]?.ToString() == "/Tasks/Index" ? "dashboard-page" : "")">
+        @RenderBody()
+    </main>
+    <footer class="container text-center text-muted small pb-3">سامانه ثبت و مدیریت گزارش کار</footer>
+    <script src="~/lib/offline/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
